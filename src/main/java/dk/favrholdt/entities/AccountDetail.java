@@ -8,6 +8,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,7 +21,6 @@ import java.time.LocalDate;
 public class AccountDetail {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -42,21 +43,21 @@ public class AccountDetail {
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
-    @Transient
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private Address address;
+    public AccountDetail(String firstName, String lastName, String email, String phoneNumber, Gender gender, LocalDate birthDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.birthDate = birthDate;
+    }
 
-    @OneToOne(mappedBy = "accountDetail", cascade = CascadeType.ALL)
+    @OneToOne
+    @MapsId // This is the primary key of the parent entity
     private Account account;
 
-    @PrePersist
-    public void prePersist() {
+    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
+    private Address address;
 
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-
-    }
 
 }

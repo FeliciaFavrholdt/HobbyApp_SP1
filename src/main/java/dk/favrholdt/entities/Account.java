@@ -18,14 +18,19 @@ import java.util.Set;
 
 @Entity
 @Table(name = "account")
+
+@NamedQueries({
+        @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a"),
+        @NamedQuery(name = "Account.findByUsername", query = "SELECT a FROM Account a WHERE a.username = :username")
+})
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "account_id")
     private Integer id;
 
-    @Column(name = "user_name", nullable = false)
+    @Column(name = "username", nullable = false)
     private String username;
 
     @Temporal(TemporalType.DATE)
@@ -33,50 +38,26 @@ public class Account {
     private LocalDate created;
 
     @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
-    @Column(name = "account_detail", nullable = false)
     private AccountDetail accountDetail;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    @Column(name = "hobbies", nullable = false)
     private Set<Hobby> hobbies = new HashSet<>();
 
-    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
-    private User user;
-
-    public Account(String username, LocalDate created) {
+    public Account(String username, LocalDate created, AccountDetail accountDetail, Set<Hobby> hobbies) {
         this.username = username;
         this.created = created;
-    }
-
-    public void addAccountDetail(AccountDetail accountDetail) {
         this.accountDetail = accountDetail;
-        accountDetail.setAccount(this);
+        this.hobbies = hobbies;
     }
 
-    public void removeAccountDetail() {
+
+    //bi directional update
+    public void addAccountDetail(AccountDetail accountDetail){
+        this.accountDetail = accountDetail;
         if (accountDetail != null) {
-            accountDetail.setAccount(null);
-            this.accountDetail = null;
+            accountDetail.setAccount(this);
         }
     }
 
-    public void addHobby(Hobby hobby) {
-        this.hobbies.add(hobby);
-    }
 
-    public void removeHobby(Hobby hobby) {
-        this.hobbies.remove(hobby);
-    }
-
-    public void addUser(User user) {
-        this.user = user;
-        user.setAccount(this);
-    }
-
-    public void removeUser() {
-        if (user != null) {
-            user.setAccount(null);
-            this.user = null;
-        }
-    }
 }

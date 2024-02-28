@@ -37,6 +37,10 @@ public class AccountImpl implements DAO<Account> {
         Account account = em.find(Account.class, id);
         em.close();
         return account;
+
+        //use of namedQuery
+        //  Query query = em.createNamedQuery("Account.findAll");
+        //  List results = query.getResultList();
     }
 
     @Override

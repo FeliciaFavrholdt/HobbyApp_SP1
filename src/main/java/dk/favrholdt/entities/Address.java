@@ -1,9 +1,6 @@
 package dk.favrholdt.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,9 +16,17 @@ import lombok.ToString;
 public class Address {
 
     @Id
+    @Column(name = "id", nullable = false)
     private String id;
 
+    @Column(name = "street", nullable = false)
     private String street;
+
+    @OneToOne
+    @MapsId
+    private Address address;
+
+
 
 
 

@@ -22,7 +22,6 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private boolean isAdmin;
 
@@ -34,17 +33,4 @@ public class User {
         this.password = password;
         this.isAdmin = isAdmin;
     }
-
-    public void addAccount(Account account) {
-        this.account = account;
-        account.setUser(this);
-    }
-
-    public void removeAccount() {
-        if (account != null) {
-            account.setUser(null);
-            this.account = null;
-        }
-    }
-
 }

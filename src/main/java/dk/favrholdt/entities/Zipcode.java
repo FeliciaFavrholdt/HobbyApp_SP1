@@ -28,5 +28,8 @@ public class Zipcode {
     @Column(name = "municipality_name", nullable = false, length = 50)
     private String municipality_name;
 
+    @OneToOne(mappedBy = "zipcode", cascade = CascadeType.ALL)
+    private Zipcode zipcode;
+
 }
 
