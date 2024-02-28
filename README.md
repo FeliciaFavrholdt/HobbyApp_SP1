@@ -13,6 +13,10 @@ hobbies and interests, and the platform can connect them with like-minded indivi
 or groups in their local area. This would add a social networking element to the service 
 and encourage people to explore new hobbies together, fostering real-world connections.
 
+#### PROJECT DESCRIPTION
+The project is focused on backend development. This means no interface is created. 
+There is also no output to the console. Only JUnit tests are used to test the functionality of the project.
+
 #### USER STORIES
     [US-1] As a user I want to get all the information about a person
     [US-2] As a user I want to get all phone numbers from a given person
@@ -27,17 +31,14 @@ and encourage people to explore new hobbies together, fostering real-world conne
     [US-11] … Add more meaningful services of your own choice.
 
 #### DOMAIN MODEL 
-See domain model via path:
+The domain model is created in several versions. The final version is the one that is used in the project.
+See all versions in the folder documentation/models. 
 
 #### EER DIAGRAM
-The EER digram is created in pgAdmin. See via path: 
+The EER diagram is created in pgAdmin. See diagram in the folder documentation/diagrams.
 
 #### GROUP DESCRIPTION
 We decided to do the assignment individually and not in a group. This can be elaborated on in the presentation.
-
-#### INTERFACE MOCKUP 
-To add a visual representation of the application a mockup of the interface is created.
-See interface mockup via path:
 
 #### TECHNICAL REQUIREMENTS
     [R-1] The project must include the following technologies
