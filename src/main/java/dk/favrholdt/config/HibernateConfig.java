@@ -1,14 +1,13 @@
-package dk.favrholdt;
+package dk.favrholdt.config;
 
+import dk.favrholdt.entities.*;
 import jakarta.persistence.EntityManagerFactory;
 import lombok.NoArgsConstructor;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-
 import java.util.Properties;
-import java.util.logging.LogManager;
 
 @NoArgsConstructor(access = lombok.AccessLevel.PRIVATE)
 public class HibernateConfig {
@@ -57,6 +56,12 @@ public class HibernateConfig {
     private static void getAnnotationConfiguration(Configuration configuration) {
         // add annotated classes
         // configuration.addAnnotatedClass(<YOUR ENTITY>.class);
+        configuration.addAnnotatedClass(Account.class);
+        configuration.addAnnotatedClass(AccountDetail.class);
+        configuration.addAnnotatedClass(Address.class);
+        configuration.addAnnotatedClass(Hobby.class);
+        configuration.addAnnotatedClass(Zipcode.class);
+        configuration.addAnnotatedClass(User.class);
     }
 
     public static EntityManagerFactory getEntityManagerFactoryConfig() {

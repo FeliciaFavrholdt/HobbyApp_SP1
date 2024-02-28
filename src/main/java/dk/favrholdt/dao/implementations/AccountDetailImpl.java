@@ -1,50 +1,51 @@
 package dk.favrholdt.dao.implementations;
 
 import dk.favrholdt.dao.DAO;
-import dk.favrholdt.entities.Hobby;
+import dk.favrholdt.entities.AccountDetail;
 import jakarta.persistence.EntityManagerFactory;
 
-public class HobbyImpl implements DAO<Hobby> {
+public class AccountDetailImpl implements DAO<AccountDetail> {
 
     private static EntityManagerFactory emf;
 
-    private static HobbyImpl instance;
+    private static AccountDetailImpl instance;
 
-    public static HobbyImpl getInstance(EntityManagerFactory _emf) {
+    public static AccountDetailImpl getInstance(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
-            instance = new HobbyImpl();
+            instance = new AccountDetailImpl();
         }
         return instance;
     }
 
-    private HobbyImpl() {
+    private AccountDetailImpl() {
     }
 
+
     @Override
-    public Hobby create(Hobby hobby) {
+    public AccountDetail create(AccountDetail accountDetail) {
         try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            em.persist(hobby);
+            em.persist(accountDetail);
             em.getTransaction().commit();
-            return hobby;
+            return accountDetail;
         }
     }
 
     @Override
-    public Hobby read(Object id) {
+    public AccountDetail read(Object id) {
         try (var em = emf.createEntityManager()) {
-            return em.find(Hobby.class, id);
+            return em.find(AccountDetail.class, id);
         }
     }
 
     @Override
-    public Hobby update(Hobby hobby) {
+    public AccountDetail update(AccountDetail accountDetail) {
         try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            em.merge(hobby);
+            em.merge(accountDetail);
             em.getTransaction().commit();
-            return hobby;
+            return accountDetail;
         }
     }
 
@@ -52,8 +53,8 @@ public class HobbyImpl implements DAO<Hobby> {
     public void delete(Object id) {
         try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            Hobby hobby = em.find(Hobby.class, id);
-            em.remove(hobby);
+            AccountDetail accountDetail = em.find(AccountDetail.class, id);
+            em.remove(accountDetail);
             em.getTransaction().commit();
         }
     }

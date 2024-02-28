@@ -1,6 +1,6 @@
 package dk.favrholdt;
 
-public class Service {
+public class ServiceExampleForTesting {
 
     public String getName(int number) {
         if (number < 0) {

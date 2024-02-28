@@ -1,22 +1,38 @@
 package dk.favrholdt.dao.implementations;
 
 import dk.favrholdt.dao.DAO;
+import dk.favrholdt.entities.Zipcode;
+import jakarta.persistence.EntityManagerFactory;
 
-@SuppressWarnings("rawtypes")
-public class ZipcodeImpl implements DAO {
+public class ZipcodeImpl implements DAO<Zipcode> {
+
+    private static EntityManagerFactory emf;
+
+    private static ZipcodeImpl instance;
+
+    public static ZipcodeImpl getInstance(EntityManagerFactory _emf) {
+        if (instance == null) {
+            emf = _emf;
+            instance = new ZipcodeImpl();
+        }
+        return instance;
+    }
+
+    private ZipcodeImpl() {
+    }
 
     @Override
-    public Object create(Object o) {
+    public Zipcode create(Zipcode zipcode) {
         return null;
     }
 
     @Override
-    public Object read(Object id) {
+    public Zipcode read(Object id) {
         return null;
     }
 
     @Override
-    public Object update(Object o) {
+    public Zipcode update(Zipcode zipcode) {
         return null;
     }
 
